@@ -16,7 +16,7 @@
   </div>
   <h4>Solution</h4>
   <div class="solution">
-    <List data="people" options="options" @changePage="changePage"></List>
+    <List :data=[] :options=[] @changePage="changePage"></List>
   </div>
 
 </template>

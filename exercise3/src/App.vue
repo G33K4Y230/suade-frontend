@@ -96,6 +96,7 @@
     .input-container {
       text-align: center;
     }
+
   }
 
   :root {
@@ -116,5 +117,78 @@
   }
 
   // TODO: Add your CSS Styling here
+
+  @media screen and (max-width: 600px) {
+    .container {
+      --items-by-row: 2;
+    }
+  }
+
+  .container {
+    --item-width: calc(calc(100vw / 7) - calc(var(--item-margin) * 7));
+    font-family: var(--font);
+    text-align: center;
+  }
+
+  .item {
+    text-align: left;
+    display: inline-block;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: var(--item-width);
+    color: white;
+    margin: var(--item-margin);
+    padding: var(--item-padding);
+    border-radius: var(--border-radius);
+  }
+
+  .item:nth-child(4n) {
+    background-color: var(--background-1);
+  }
+
+  .item:nth-child(2n - 1) {
+    background-color: var(--background-2);
+  }
+
+  .item:nth-child(4n + 2) {
+    background-color: var(--background-3);
+  }
+
+  .item img {
+    max-width: 100%;
+    max-height: 30px;
+  }
+
+  .name {
+    font-weight: bold;
+    margin-bottom: 2px;
+    text-overflow: ellipsis;
+    text-wrap: nowrap;
+  }
+
+  .eye {
+    margin-right: 8px
+  }
+
+  .eye-color {
+    display: flex;
+    align-items: center;
+  }
+
+  .eye-icon {
+    max-height: 1.5em !important;
+  }
+
+  .brown {
+    filter: hue-rotate(var(--eye-brown));
+  }
+
+  .green {
+    filter: hue-rotate(var(--eye-green));
+  }
+
+  .blue {
+    filter: hue-rotate(var(--eye-blue));
+  }
 
 </style>

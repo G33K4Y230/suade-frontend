@@ -27,6 +27,7 @@
     computed: {
       // sort data by name
       sortedData() {
+        console.log(this.data)
         return this.data.slice().sort((a, b)=>{
           if (a.name < b.name) {
             return -1;
@@ -38,7 +39,7 @@
       },
       // paginate data
       paginatedData() {
-        return this.sortedData.slice(this.options.pagination.offset, this.options.pagination.offset + this.options.pagination.limit);
+        return this.sortedData.slice(this.options.pagination?.offset, this.options.pagination?.offset + this.options.pagination.limit);
       },
       // list of pages to display
       pages() {
@@ -48,7 +49,7 @@
       },
       // currently displayed page
       currentPage() {
-        return (this.options.pagination.offset / this.options.pagination.limit);
+        return (this.options.pagination?.offset / this.options.pagination?.limit);
       },
     },
   };
