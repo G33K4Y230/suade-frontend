@@ -14,7 +14,7 @@
   <div class="solution">
 
     <div class="person-wrapper">
-      <PersonCard v-for="person in people" :person="person" class="person-card" :personClick="alertBox"/>
+      <PersonCard v-for="person in people" :key="person._id" :person="person" class="person-card" :personClick="alertBox"/>
     </div>
     <div class="summary">{{people.length}} persons cards displayed</div>
 
@@ -44,7 +44,7 @@
 
 </script>
 
-<style lang="scss">
+<style lang="css">
 
   .person-card {
     background: #e4e4e4;
