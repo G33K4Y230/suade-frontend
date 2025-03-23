@@ -7,9 +7,9 @@
   </ul>
   <div class="pagination">
     <ul>
-      <li @click="changePage(currentPage-1)" :class="{disabled: currentPage === 0}">&lt;</li>
-      <li v-for="p in pages" :key="p" @click="changePage(p)" :class="{active: p === currentPage}">{{ p + 1 }}</li>
-      <li @click="changePage(currentPage+1)" :class="{disabled: currentPage === pages.length - 1}">&gt;</li>
+      <li :class="{disabled: currentPage === 0}" @click="$emit('changePage', currentPage-1)">&lt;</li>
+      <li v-for="p in pages" :key="p" :class="{active: p === currentPage}" @click="$emit('changePage', currentPage)">{{ p + 1 }}</li>
+      <li :class="{disabled: currentPage === pages.length - 1}" @click="$emit('changePage', currentPage+1)" >&gt;</li>
     </ul>
   </div>
 
@@ -23,10 +23,11 @@
       data: {type: Array, default: ()=>[]},
       options: {type: Object, default: ()=>({limit: 25, offset: 0})},
     },
+    emits: ['changePage'],
     computed: {
       // sort data by name
       sortedData() {
-        return this.data.sort((a, b)=>{
+        return this.data.slice().sort((a, b)=>{
           if (a.name < b.name) {
             return -1;
           } else if (a.name > b.name) {
@@ -43,16 +44,11 @@
       pages() {
         return new Array(Math.ceil(this.data.length / this.options.pagination.limit))
           .fill()
-          .map((v, i)=>i);
+          .map((_v, i)=>i);
       },
       // currently displayed page
       currentPage() {
         return (this.options.pagination.offset / this.options.pagination.limit);
-      },
-    },
-    methods: {
-      changePage(page) {
-        this.options.pagination.offset = (page) * this.options.pagination.limit;
       },
     },
   };

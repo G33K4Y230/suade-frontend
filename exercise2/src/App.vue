@@ -16,7 +16,7 @@
   </div>
   <h4>Solution</h4>
   <div class="solution">
-    <List data="people" options="options"></List>
+    <List data="people" options="options" @changePage="changePage"></List>
   </div>
 
 </template>
@@ -30,7 +30,7 @@
     components: {List},
     data: ()=>{
       return {
-        people: [],
+        people: () =>[],
         options: {pagination: {limit: 10, offset: 0}},
       };
     },
@@ -42,6 +42,16 @@
         .then(function(data) {
           this.people = data;
         });
+    },
+    computed: {
+      currentPage() {
+        return (this.options.pagination.offset / this.options.pagination.limit);
+      },
+    },
+    methods: {
+      changePage(page) {
+        this.options.pagination.offset = (page) * this.options.pagination.limit;
+      },
     },
   };
 
