@@ -118,28 +118,45 @@
 
   // TODO: Add your CSS Styling here
 
-  @media screen and (max-width: 600px) {
+  @media only screen and (max-width: 600px) {
     .container {
       --items-by-row: 2;
     }
   }
 
+  @media only screen and (min-width: 600px) {
+    .container {
+      --items-by-row: 4;
+    }
+  }
+
+  @media only screen and (min-width: 1024px) {
+    .container {
+      --items-by-row: 7;
+    }
+  }
+
   .container {
-    --item-width: calc(calc(100vw / 7) - calc(var(--item-margin) * 7));
+    --width: calc(100% - calc(var(--item-margin) * var(--items-by-row)));
+    --item-width: calc(var(--width) / calc(var(--items-by-row) + 2));
     font-family: var(--font);
     text-align: center;
+    justify-content: center;
   }
 
   .item {
+    width: var(--item-width);
     text-align: left;
     display: inline-block;
     flex-direction: column;
     justify-content: space-evenly;
-    width: var(--item-width);
     color: white;
     margin: var(--item-margin);
     padding: var(--item-padding);
     border-radius: var(--border-radius);
+    overflow:hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
 
   .item:nth-child(4n) {
@@ -162,8 +179,6 @@
   .name {
     font-weight: bold;
     margin-bottom: 2px;
-    text-overflow: ellipsis;
-    text-wrap: nowrap;
   }
 
   .eye {
