@@ -18,26 +18,23 @@
   <h4>Solution</h4>
   <div class="solution">
     <!-- TODO: implement template here -->
-     <List v-bind:data="people"></List>
+    <button @click="initializeData">Initialize Data</button>
+     <list :data="people"></list>
   </div>
 
 </template>
 
 <script>
-import { onMounted } from 'vue';
 import List from './components/List.vue';
 
   // TODO: implement logic here
 
+  import helpers from './helpers/helpers';
+
   export default {
     name: 'app',
-    setup() {
-      onMounted(async () => {
-      })
-    },
     data() {
       return {
-        people: this.$store.state.people
       }
     },
     components: {
@@ -45,9 +42,12 @@ import List from './components/List.vue';
     },
     computed: {
       people() {
-        //this.$store.dispatch('getPeople')
-        console.log(this.$store.state.people)
-        return this.$store.state.people
+        return this.$store.state.people.filter(helpers.filterByAge(25, 35)).sort((a, b) => helpers.sortByAge(a, b))
+      }
+    },
+    methods: {
+      initializeData() {
+        this.$store.dispatch('getPeople')
       }
     }
   }
