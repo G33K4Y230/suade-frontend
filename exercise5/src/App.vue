@@ -16,7 +16,7 @@
 
     <h5>Gender</h5>
     <p v-if="genderGroups">Male: {{ parseInt(genderGroups.male * 100) }}%, Female: {{ parseInt(genderGroups.female * 100) }}%</p>
-
+    <p v-for="qq in genderGroups">{{  }}</p>
     <h5>Table</h5>
     <table>
       <thead>
