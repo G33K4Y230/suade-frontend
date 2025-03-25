@@ -18,12 +18,40 @@
   <h4>Solution</h4>
   <div class="solution">
     <!-- TODO: implement template here -->
+     <List v-bind:data="people"></List>
   </div>
 
 </template>
 
 <script>
+import { onMounted } from 'vue';
+import List from './components/List.vue';
+
   // TODO: implement logic here
+
+  export default {
+    name: 'app',
+    setup() {
+      onMounted(async () => {
+      })
+    },
+    data() {
+      return {
+        people: this.$store.state.people
+      }
+    },
+    components: {
+      'list': List
+    },
+    computed: {
+      people() {
+        //this.$store.dispatch('getPeople')
+        console.log(this.$store.state.people)
+        return this.$store.state.people
+      }
+    }
+  }
+
 </script>
 
 <style lang="scss">
