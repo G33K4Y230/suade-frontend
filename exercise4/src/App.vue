@@ -18,7 +18,6 @@
   <h4>Solution</h4>
   <div class="solution">
     <!-- TODO: implement template here -->
-    <button @click="initializeData">Initialize Data</button>
     <list :data="people"></list>
   </div>
 
@@ -37,17 +36,15 @@
       return {
       }
     },
+    created() {
+      this.$store.dispatch('getPeople')
+    },
     components: {
       'list': List,
     },
     computed: {
       people() {
         return this.$store.state.people.filter(helpers.filterByAge(25, 35)).sort((a, b) => helpers.sortByAge(a, b))
-      },
-    },
-    methods: {
-      initializeData() {
-        this.$store.dispatch('getPeople')
       },
     },
   }
