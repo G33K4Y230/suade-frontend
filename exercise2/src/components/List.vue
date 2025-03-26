@@ -8,8 +8,8 @@
   <div class="pagination">
     <ul>
       <li :class="{disabled: currentPage === 0}" @click="$emit('changePage', currentPage-1)">&lt;</li>
-      <li v-for="p in pages" :key="p" :class="{active: p === currentPage}" @click="$emit('changePage', currentPage)">{{ p + 1 }}</li>
-      <li :class="{disabled: currentPage === pages.length - 1}" @click="$emit('changePage', currentPage+1)" >&gt;</li>
+      <li v-for="p in pages" :key="p" :class="{active: p === currentPage}" @click="$emit('changePage', p)">{{ p + 1 }}</li>
+      <li :class="{disabled: currentPage === pages.length - 1}" @click="$emit('changePage', currentPage+1)">&gt;</li>
     </ul>
   </div>
 
@@ -19,16 +19,12 @@
 
   export default {
     name: 'List',
-    props: {
-      data: {type: Array, default: ()=>[]},
-      options: {type: Object, default: ()=>({limit: 25, offset: 0})},
-    },
+    props: ['data', 'options'],
     emits: ['changePage'],
     computed: {
       // sort data by name
       sortedData() {
-        console.log(this.data)
-        return this.data.slice().sort((a, b)=>{
+        return this.data?.slice().sort((a, b)=>{
           if (a.name < b.name) {
             return -1;
           } else if (a.name > b.name) {
@@ -39,7 +35,7 @@
       },
       // paginate data
       paginatedData() {
-        return this.sortedData.slice(this.options.pagination?.offset, this.options.pagination?.offset + this.options.pagination.limit);
+        return this.sortedData.slice(this.options.pagination.offset, this.options.pagination.offset + this.options.pagination.limit);
       },
       // list of pages to display
       pages() {
@@ -49,7 +45,7 @@
       },
       // currently displayed page
       currentPage() {
-        return (this.options.pagination?.offset / this.options.pagination?.limit);
+        return (this.options.pagination.offset / this.options.pagination.limit);
       },
     },
   };

@@ -16,7 +16,7 @@
   </div>
   <h4>Solution</h4>
   <div class="solution">
-    <List :data=[] :options=[] @changePage="changePage"></List>
+    <List v-model:options="options" :data="people" @change-page="changePage" ></List>
   </div>
 
 </template>
@@ -30,23 +30,18 @@
     components: {List},
     data: ()=>{
       return {
-        people: () =>[],
+        people: [],
         options: {pagination: {limit: 10, offset: 0}},
       };
     },
     created() {
       fetch('https://suade.org/filehosting/challenges/people.json')
-        .then(function(response) {
-          response.json();
+        .then(response => response.json())
+        .then(data => {
+          this.people = data
+          return data
         })
-        .then(function(data) {
-          this.people = data;
-        });
-    },
-    computed: {
-      currentPage() {
-        return (this.options.pagination.offset / this.options.pagination.limit);
-      },
+        .catch(error => console.error(error));
     },
     methods: {
       changePage(page) {

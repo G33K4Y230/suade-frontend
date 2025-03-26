@@ -21,6 +21,12 @@
         type: Object,
         default: () => {},
       },
+      class: {
+        type: String,
+      },
+      personClick: {
+        type: Function,
+      },
     },
   };
 </script>
