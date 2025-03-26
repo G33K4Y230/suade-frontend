@@ -19,13 +19,13 @@
   <div class="solution">
     <!-- TODO: implement template here -->
     <button @click="initializeData">Initialize Data</button>
-     <list :data="people"></list>
+    <list :data="people"></list>
   </div>
 
 </template>
 
 <script>
-import List from './components/List.vue';
+  import List from './components/List.vue';
 
   // TODO: implement logic here
 
@@ -38,18 +38,18 @@ import List from './components/List.vue';
       }
     },
     components: {
-      'list': List
+      'list': List,
     },
     computed: {
       people() {
         return this.$store.state.people.filter(helpers.filterByAge(25, 35)).sort((a, b) => helpers.sortByAge(a, b))
-      }
+      },
     },
     methods: {
       initializeData() {
         this.$store.dispatch('getPeople')
-      }
-    }
+      },
+    },
   }
 
 </script>
