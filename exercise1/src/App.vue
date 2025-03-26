@@ -44,7 +44,7 @@
 
 </script>
 
-<style lang="css">
+<style lang="scss">
 
   .person-card {
     background: #e4e4e4;
