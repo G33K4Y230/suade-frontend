@@ -45,23 +45,23 @@
 </template>
 
 <script>
-import people from './assets/people.json';
+  import people from './assets/people.json';
 
-export default {
-  name: 'App',
-  data() {
-    return {
-      dataSize: 10,
-      people: people,
-    };
-  },
-  computed: {
-    items() {
-      return this.people.slice(0, this.dataSize);
+  export default {
+    name: 'App',
+    data() {
+      return {
+        dataSize: 10,
+        people: people,
+      };
     },
-  },
-  methods: {},
-};
+    computed: {
+      items() {
+        return this.people.slice(0, this.dataSize);
+      },
+    },
+    methods: {},
+  };
 </script>
 
 <style lang="scss">
