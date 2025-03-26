@@ -19,7 +19,14 @@
 
   export default {
     name: 'List',
-    props: ['data', 'options'],
+    props: {
+      data: {
+        type: Array, 
+      },
+      options: {
+        type: Object, 
+      },
+    },
     emits: ['changePage'],
     computed: {
       // sort data by name
